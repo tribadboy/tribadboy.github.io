@@ -16,9 +16,9 @@
 title: Jarvis Yang's Blog
 
 # Build settings
-markdown: kramdown
-plugins:
-  - jekyll-feed
+#markdown: kramdown
+#plugins:
+#  - jekyll-feed
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list

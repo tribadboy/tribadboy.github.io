@@ -17,7 +17,6 @@ title: Jarvis Yang's Blog
 
 # Build settings
 markdown: kramdown
-theme: minima
 plugins:
   - jekyll-feed
 

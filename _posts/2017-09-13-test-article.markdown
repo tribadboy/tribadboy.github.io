@@ -1,6 +1,10 @@
-<h1>404</h1>
-<p><strong>Page not found :(</strong></p>
-<p>The requested page could not be found.</p>
+---
+title: iiiii
+---
+
+<h1>Head</h1>
+<p>Hello, world</p>
+
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109909640-1"></script>
 <script>
@@ -10,4 +14,5 @@
 
   gtag('config', 'UA-109909640-1');
 </script>
+
 

@@ -16,4 +16,10 @@ title: It is a test article
   gtag('config', 'UA-109909640-1');
 </script>
 
-
+<script>
+function f() {
+    document.write(Date())
+    ga('send', 'event', 'video', 'play', 'label_x');
+}
+</script>
+<button type="button" onclick="f()"> button </button>

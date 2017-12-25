@@ -27,9 +27,16 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 
 <script>
 function f() {
-    document.write(Date())
     ga('create', 'UA-109909640-1', 'auto');
     ga('send', 'event', 'video', 'play', 'label_x');
 }
+
+function g() {
+    gtag('event', 'login', {
+        'event_category' : 'access',
+        'event_label' : 'Google',
+    });
+}
 </script>
-<button type="button" onclick="f()"> button </button>
+<button type="button" onclick="f()">ga  button </button>
+<button type="button" onclick="g()">gtag button </button>

@@ -37,6 +37,14 @@ function g() {
         'event_label' : 'Google',
     });
 }
+function h() {
+    gtag('event', 'property_event', {
+        'send_to' : 'UA-109909640-1',
+        'event_category' : 'certain property',
+        'event_label' : 'test',
+    });
+}
 </script>
 <button type="button" onclick="f()">ga  button </button>
 <button type="button" onclick="g()">gtag button </button>
+<button type="button" onclick="h()">gtag button certain property </button>

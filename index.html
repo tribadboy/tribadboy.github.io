@@ -1,5 +1,4 @@
 ---
-<<<<<<< HEAD
 layout: default
 title: Home
 cover: false
@@ -17,22 +16,14 @@ cover: false
     <a class="scroll-down icon-arrow-left" href="#content" data-offset="-45"><span class="hidden">Scroll Down</span></a>
 </header>
 
-=======
->>>>>>> parent of abb5350... add theme
+<main id="content" class="content" role="main">
 
----
+    <div class="extra-pagination inner">
+        {% include pagination.html %}
+    </div>
 
-<h1>Content</h1>
-<ul>
-  {% for post in site.posts %}
-  <li>
-    <a href="{{ post.url }}">{{ post.title }}</a>
-  </li>
-  {% endfor %}
-</ul>
-<p>TO BE CONTINUED</p>
+    {% for post in paginator.posts %}
 
-<<<<<<< HEAD
     <article class="post">
         <header class="post-header">
             <h2 class="post-title"><a href="{{ post.url }}">{{ post.title }}</a></h2>
@@ -53,16 +44,10 @@ cover: false
             </time> 
         </footer>
     </article>
-=======
->>>>>>> parent of abb5350... add theme
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-109909640-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    {% endfor %}
 
-  gtag('config', 'UA-109909640-1');
-</script>
+    {% include pagination.html %}
+
+</main>
 

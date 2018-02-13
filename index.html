@@ -1,10 +1,11 @@
 ---
+<<<<<<< HEAD
 layout: default
 title: Home
 cover: false
 ---
 
-<header class="main-header" style="background-image: url(/assets/images/pic3.png) ">
+<header class="main-header" style="background-image: url(/assets/images/tools/website/back-img.jpg) ">
     <div class="vertical">
         <div class="main-header-content inner">
             <h1 class="page-title">{{ site.name }}</h1>
@@ -16,16 +17,22 @@ cover: false
     <a class="scroll-down icon-arrow-left" href="#content" data-offset="-45"><span class="hidden">Scroll Down</span></a>
 </header>
 
+=======
+>>>>>>> parent of abb5350... add theme
 
-<main id="content" class="content" role="main">
+---
 
+<h1>Content</h1>
+<ul>
+  {% for post in site.posts %}
+  <li>
+    <a href="{{ post.url }}">{{ post.title }}</a>
+  </li>
+  {% endfor %}
+</ul>
+<p>TO BE CONTINUED</p>
 
-    <div class="extra-pagination inner">
-        {% include pagination.html %}
-    </div>
-
-    {% for post in paginator.posts %}
-
+<<<<<<< HEAD
     <article class="post">
         <header class="post-header">
             <h2 class="post-title"><a href="{{ post.url }}">{{ post.title }}</a></h2>
@@ -35,7 +42,7 @@ cover: false
         </section>
         <footer class="post-meta">
             {% if site.author %}
-                <img class="author-thumb" src="/assets/images/profile.png" alt="Author's profile picture" nopin="nopin" />
+                <img class="author-thumb" src="/assets/images/tools/user/profile.png" alt="Author's profile picture" nopin="nopin" />
                 {{ site.author }}
             {% endif %}
             {% if post.categories.size > 0 %} 
@@ -46,9 +53,16 @@ cover: false
             </time> 
         </footer>
     </article>
+=======
+>>>>>>> parent of abb5350... add theme
 
-    {% endfor %}
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-109909640-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-    {% include pagination.html %}
+  gtag('config', 'UA-109909640-1');
+</script>
 
-</main>

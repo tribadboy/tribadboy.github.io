@@ -6,6 +6,6 @@ categories: Journey
 ---
 
 
-<img class="custom_image" src="/assets/images/pic3.png" 
+<img class="custom_image" src="/assets/images/article/travel/pic3.png"
 width="400px" height="300px" align="center">
 

@@ -217,9 +217,6 @@ width="400" height="300" align="center">
 <img class="custom_image" src="/assets/images/article/travel/IMG_0559.jpg"
 width="400" height="300" align="center">
 
-<img class="custom_image" src="/assets/images/article/travel/IMG_0567.jpg"
-width="400" height="300" align="center">
-
 <img class="custom_image" src="/assets/images/article/travel/IMG_0569.jpg"
 width="400" height="300" align="center">
 

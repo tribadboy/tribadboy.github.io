@@ -2,9 +2,10 @@ name: Jarvis Yang 's  Blog
 description: Work & Code & Life & Other ...
 
 markdown: kramdown
-highlighter: pygments
+#highlighter: pygments
+highlighter: rouge
 logo: false
-paginate: 5
+paginate: 3
 domain_name: 'http://yangyueyang.com'
 # google_analytics: 'UA-XXXXXXXX-X'
 plugins: [jekyll-paginate]

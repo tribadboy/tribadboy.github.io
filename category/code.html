@@ -1,8 +1,10 @@
 ---
 layout: default
-title: journey
+title: Home
 cover: false
 ---
+
+{% assign category_name = 'code' %}
 
 <header class="main-header" style="background-image: url(/assets/images/tools/website/back-img.jpg) ">
     <div class="vertical">
@@ -23,7 +25,13 @@ cover: false
         <span class="page-number" align="left">Category:</span>
         <span align="center">
             {% for category in site.categories %}
-                <a href="{{ site.baseurl}}/category/{{ category.first }}.html">{{category.first}}（{{category.last.size}}）</a>
+                <a href="{{ site.baseurl}}/category/{{ category.first }}.html">
+                    {% if category_name != category.first %}
+                        <span>{{category.first}}（{{category.last.size}}）</span>
+                    {% else %}
+                        <span style="color:#0000ff">{{category.first}}（{{category.last.size}}）</span>
+                    {% endif %}
+                </a>
                 &nbsp;&nbsp;&nbsp;&nbsp;
             {% endfor %}
         </span>
@@ -31,7 +39,8 @@ cover: false
     </nav>
 
 
-    {% for post in paginator.posts %}
+    {% assign posts = site.categories[category_name] %}
+    {% for post in posts %}
     <article class="post">
         <header class="post-header">
             <h2 class="post-title"><a href="{{ post.url }}">{{ post.title }}</a></h2>
@@ -44,29 +53,16 @@ cover: false
                 <img class="author-thumb" src="/assets/images/tools/user/profile.png" alt="Author's profile picture" nopin="nopin" />
                 {{ site.author }}
             {% endif %}
-            {% if post.categories.size > 0 %} 
-                {{ post.categories | array_to_sentence_string | prepend: 'on ' }} 
+            {% if post.categories.size > 0 %}
+                {{ post.categories | array_to_sentence_string | prepend: 'on ' }}
             {% endif %}
             <time class="post-date" datetime="{{ post.date | date:"%Y-%m-%d" }}">
                 {{ post.date | date_to_string }}
-            </time> 
+            </time>
         </footer>
     </article>
     {% endfor %}
 
-    <nav class="pagination" role="pagination">
-    {% if paginator.previous_page %}
-        {% if paginator.previous_page == 1 %}
-            <a class="newer-posts" href="/" title="Previous Page">&laquo; Previous Page</a>
-        {% else %}
-            <a class="newer-posts" href="/page{{ paginator.previous_page }}/#content" title="Previous Page">&laquo; Previous Page</a>
-      {% endif %}
-    {% endif %}
-    <span class="page-number"> Page {{paginator.page}} of {{paginator.total_pages}} </span>
-    {% if paginator.next_page %}
-        <a class="older-posts" href="/page{{ paginator.next_page }}/#content" title="Next Page">Next Page &raquo;</a>
-    {% endif %}
-    </nav>
 
 </main>
 

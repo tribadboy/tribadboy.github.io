@@ -36,6 +36,14 @@ cover: false
             {% endfor %}
         </span>
         <span class="page-number" align="right"> <a href="/"><i>Homepage</i></a></span>
+        <br>
+        <span class="page-number" align="left">Tag:</span>
+        <span align="center">
+            {% for tag in site.tags %}
+                <a href="{{ site.baseurl}}/tag/{{ tag.first }}.html">{{tag.first}}（{{tag.last.size}}）</a>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+            {% endfor %}
+        </span>
     </nav>
 
 

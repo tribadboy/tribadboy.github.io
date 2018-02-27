@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Html5 Animation
-categories: [html5,code,test]
-comments: true
+categories: [code]
+tags: [html5, canvas]
 ---
 
 <br>

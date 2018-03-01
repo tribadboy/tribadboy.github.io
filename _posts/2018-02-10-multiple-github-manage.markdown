@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Multiple Github Mangement
+title: Multiple Github Account Mangement
 categories: [devops]
 tags: [github]
 ---

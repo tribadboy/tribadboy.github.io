@@ -2,7 +2,7 @@
 layout: post
 title: Html5 Animation
 categories: [development]
-tags: [html5, canvas]
+tags: [html, canvas]
 ---
 
 <br>

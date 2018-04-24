@@ -49,10 +49,21 @@ tags: [html]
      `image.click()`
      `time.sleep(5)`
 
+ *转换所属 `Frame/iFrame`*
+
+    `browser.switch_to.default_content()`
+    `browser.switch_to.frame(xxx)`
+
+ *转换窗口 `window`*
+
+    `handlers = browser.window_handles`
+    `browser.switch_to.window(handlers[x])`
+
+
  *尝试查找 `<img src=xx[a.png]xx>` , 当找不到该元素时，会报异常，可以根据是否抛出异常判断是否找到了该元素（a.png)*
 
     # 结束该浏览器
-    `browser.close()`
+    `browser.close() / browser.quit()`
 
 *在有些服务器上浏览器无法正常关闭，会导致线程永久占用资源，当反复执行类似脚本时会导致资源穷尽而宕机，可以通过定时清理线程资源而避免*
 

@@ -23,17 +23,17 @@ cover: false
         <span class="page-number" align="left">Category:</span>
         <span align="center">
             {% for category in site.categories %}
-                <a href="{{ site.baseurl}}/category/{{ category.first }}?aaa=111.html">{{category.first}}（{{category.last.size}}）</a>
+                <a href="{{ site.baseurl}}/category/{{ category.first }}">{{category.first}}（{{category.last.size}}）</a>
                 &nbsp;&nbsp;&nbsp;&nbsp;
             {% endfor %}
         </span>
         <span class="page-number" align="right"> <a href="/"><i>Homepage</i></a></span>
         <br>
         <span class="page-number" align="left">Tag:</span>
-        <span align="center">
+        <span align="left">
             {% for tag in site.tags %}
                 <a href="{{ site.baseurl}}/tag/{{ tag.first }}.html">{{tag.first}}（{{tag.last.size}}）</a>
-                &nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;
             {% endfor %}
         </span>
     </nav>

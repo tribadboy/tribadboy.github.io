@@ -2,14 +2,15 @@
 layout: post
 title: Google Sheet API Simple Usage
 categories: [development]
-tags: [ftp]
+tags: [api]
 ---
 
 <br>Google Sheet 上传 csv，使用 gspread 依赖。
 
 <br>
 
-### `1.ss翻墙`
+##### 1. socks5代理
+
 ```python
 import socks
 import socket
@@ -24,7 +25,7 @@ set_socket()
 
 
 
-### `2.导入 gspread 依赖，通过认证`
+##### 2. 导入 gspread 依赖，通过认证
 
 ```python
 import gspread
@@ -39,7 +40,7 @@ client = gspread.authorize(credentials)
 
 
 
-### `3.根据 id 打开 spreedsheet ，需要将该 google sheet 分享给 client_email`
+##### 3. 根据 id 打开 spreedsheet ，需要将该 google sheet 分享给 client_email
 
 ```python
 spreadsheetId = '1SdqfOJ--wI_x9BmbpWqWFWiSglsUgN-hf1nASKGkS50'
@@ -49,7 +50,7 @@ spreadsheet = client.open_by_url(url)
 
 
 
-### `4.操纵第一个 sheet`
+##### 4. 操纵第一个 sheet
 
 ```python
 sheet1 = spreadsheet.get_worksheet(index=0)
@@ -59,11 +60,22 @@ sheet1.clear()
 
 
 
-### `5.导入 csv ，默认导入第一个 sheet`
+##### 5. 导入 csv ，默认导入第一个 sheet
 
 ```python
 client.import_csv(spreadsheetId, open('.../test weekly.csv', 'r').read())
 ```
+
+<br>
+
+参考文档：
+
+[https://github.com/burnash/gspread](https://github.com/burnash/gspread)
+
+[https://gspread.readthedocs.io/en/latest/oauth2.html](https://gspread.readthedocs.io/en/latest/oauth2.html)
+
+[https://console.developers.google.com/apis/dashboard](https://console.developers.google.com/apis/dashboard)
+
 
 
 <br>

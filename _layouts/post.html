@@ -20,10 +20,15 @@ post_class: post-template
         <header class="post-header">
             <h1 class="post-title">{{ page.title }}</h1>
             <section class="post-meta">
-                <time class="post-date" datetime="{{ page.date | date:"%Y-%m-%d" }}">{{ page.date | date_to_string }}</time>
                 {% if page.categories.size > 0 %}
-                    {{ page.categories | array_to_sentence_string | prepend: 'on ' }}
+                    Category: "{{ page.categories | array_to_sentence_string }}"  
                 {% endif %}
+                {% if page.tags.size > 0 %}
+                     &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp; Tags: {{ page.tags | array_to_sentence_string }}&nbsp;&nbsp;&nbsp;&nbsp;
+                {% endif %}
+
+                <time class="post-date" datetime="{{ page.date | date:"%Y-%m-%d" }}">{{ page.date | date_to_string }}</time>
+
             </section>
         </header>
 
@@ -45,21 +50,16 @@ post_class: post-template
         <footer class="post-footer">
             <!-- If we want to display author's name and bio -->
             {% if site.author %}
-                <figure class="author-image">
+<!--                 <figure class="author-image">
                     <a class="img" href="" style="background-image: url(/assets/images/tools/user/profile.png)">
                     <span class="hidden">{{site.author}}'s Picture</span></a>
-                </figure>
-                <section class="author">
-                    <!-- Author Name -->
+                </figure> -->
+<!--                 <section class="author">
                     <h4> {{ site.author }} </h4>
-                    <!-- Author Bio -->
                     <p>
                         Life was like a box of chocolate ,you never know what you're gonna get. 
                     </p>
-                    <p>
-                        拥抱生活，随遇而安
-                    </p>
-                </section>
+                </section> -->
             {% endif %}
 
         </footer>

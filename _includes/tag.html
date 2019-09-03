@@ -49,16 +49,15 @@
             {{ post.excerpt }} <a class="read-more" href="{{ post.url }}">&raquo;</a>
         </section>
         <footer class="post-meta">
-            {% if site.author %}
-                <img class="author-thumb" src="/assets/images/tools/user/profile.png" alt="Author's profile picture" nopin="nopin" />
-                {{ site.author }}
+
+            {% if post.categories.size > 0 %} 
+                {{ post.categories | array_to_sentence_string }} 
             {% endif %}
-            {% if post.tags.size > 0 %}
-                {{ post.tags | array_to_sentence_string | prepend: 'on ' }}
-            {% endif %}
+
             <time class="post-date" datetime="{{ post.date | date:"%Y-%m-%d" }}">
                 {{ post.date | date_to_string }}
-            </time>
+            </time> 
+
         </footer>
     </article>
     {% endfor %}

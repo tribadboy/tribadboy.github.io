@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  Lost in Tokyo (Album)
-categories: [journey]
+categories: [lifelog]
 ---
 
 <br>

@@ -66,8 +66,8 @@ generated_numbers AS
 date_dimension AS
 (
   SELECT CURRENT_DATE - gen_num AS sys_date FROM generated_numbers
-  WHERE gen_num >= 0 AND gen_num <= 100
-  ORDER BY gen_num DESC
+  WHERE gen_num >= 0 AND gen_num < 100
+  ORDER BY sys_date DESC
 )
 SELECT * FROM date_dimension WHERE date_dimension.sys_date NOT IN 
 (

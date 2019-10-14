@@ -29,20 +29,22 @@ id   user_id  time   url
 ```sql
 (a) sql '排序'
 
-SELECT url, COUNT(*)/COUNT(DISTINCT user_id) as cnt
+SELECT url, COUNT(*)/COUNT(DISTINCT user_id) AS cnt
 FROM log
 GROUP BY url
-WHERE time == 'xxx'
+WHERE time = 'xxx'
 ORDER BY cnt DESC
 LIMIT 1;
 
 
 (b) sql '不排序'
 
-WITH t1 AS (SELECT url, COUNT(*)/COUNT(DISTINCT user_id) as cnt
-FROM log
-GROUP BY rul)
-SELECT * FROM t1 WHERE cnt in (SELECT MAX(cnt) from t1);
+WITH t1 AS (
+  SELECT url, COUNT(*)/COUNT(DISTINCT user_id) AS cnt
+  FROM log
+  GROUP BY url
+  WHERE time = 'xxx')
+SELECT * FROM t1 WHERE cnt IN (SELECT MAX(cnt) FROM t1);
 
 
 (c) python pandas
@@ -61,13 +63,12 @@ df[df.time == 'xxx'].groupby('url').apply(lambda x: pd.Series({
 (a) sql
 
 WITH t1 AS (
-SELECT * FROM (
-   SELECT user_id, time, url, 
-          row_number() OVER(PARTITION BY user_id ORDER BY time ASC) as rank
-   FROM log WHERE time = 'xxx')
-WHERE rank = 1 )
-
-SELECT url, count(*) as cnt
+  SELECT * FROM (
+     SELECT user_id, time, url,
+     ROW_NUMBER() OVER(PARTITION BY user_id ORDER BY time ASC) AS rank
+     FROM log WHERE time = 'xxx')
+  WHERE rank = 1 )
+SELECT url, COUNT(*) AS cnt
 FROM t1
 GROUP BY url
 HAVING cnt >= 100 AND cnt <= 500

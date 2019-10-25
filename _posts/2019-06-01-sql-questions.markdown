@@ -1,8 +1,8 @@
 ---
 layout: post
-title: SQL Questions
+title: SQL Interview Questions
 categories: [development]
-tags: [sql]
+tags: [sql, question]
 ---
 
 <br>SQL 知识点： 个人作为面试官的样题，主要针对校招/实习生，附上参考答案。
@@ -80,9 +80,11 @@ LIMIT 1;
 
 df = df[df.time == 'xxx'].groupby('user_id'， as_index=False).apply(
   			lambda x: x.sort_values('time').iloc[0])
-df.groupby('url').apply(lambda x: pd.Series({
+df = df.groupby('url').apply(lambda x: pd.Series({
     'cnt' : len(x),
-})).sort_values('cnt', ascending=False).iloc[0]
+}))
+df[(df.cnt >= 100) & (df.cnt <= 500)].sort_values(
+  'cnt', ascending=False).iloc[0]
 
 ```
 

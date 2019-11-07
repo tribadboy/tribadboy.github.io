@@ -195,7 +195,7 @@ when K >= x ,
              = 2^(x-2) * 2^2 - 1
              = 2^x - 1
              
-  可发现，当鸡蛋足够多时，策略转化为“二分搜索”
+  可发现，当鸡蛋足够多时，策略类似于“二分搜索”
 
 ```
 
@@ -241,7 +241,7 @@ def superEggDrop(K, N):
                 return left
             right = x_tmp
         elif result_tmp < N:
-            if right-left == 1:
+            if right - left == 1:
                 return right
             left = x_tmp
         else:

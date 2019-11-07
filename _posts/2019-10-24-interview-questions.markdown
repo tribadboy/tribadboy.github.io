@@ -10,7 +10,6 @@ tags: [question]
 <br>
 
 <h3>A . 抛硬币</h3>
-
 > 设有一个正反两面的硬币，A 和 B 两人轮流抛硬币，当硬币序列出现特定状况时游戏结束，否则无限进行下去，直到满足规则结束
 
 <br>
@@ -119,6 +118,135 @@ B：(1/2)^2 + (1/2)^4 + (1/2)^6 + ......
 最终得出：
           P(A) = 2/5     P(B) = 3/5
       
+```
+
+<br>
+
+<br>
+
+<h3>B . 扔鸡蛋计算硬度问题</h3>
+
+> 设有 K 个鸡蛋， N 级台阶，鸡蛋在某一级台阶往底层扔，当鸡蛋在第 n 层开始碎掉时，表示鸡蛋的硬度为 n ，请提供一种方案，使得无论鸡蛋的硬度是多少，测试的次数尽量少
+
+<br>
+
+(个人整理方法，若有不同解决方案，仅供参考）
+
+##### (1)  若 K = 2，N = 100 
+
+```
+(a) ‘平衡’分析
+
+假设使用“二分法”，从 50 层开始扔鸡蛋：
+  若 50 层碎掉，则只剩一个鸡蛋，只能从第一层开始扔
+  若 50 层没碎掉，则可以继续使用二分法，从 75 层扔
+  
+分析发现，在最好情况下，测试次数为 logN 级别，
+        但在最坏情况下，测试次数为 N/2 次，故该方法不够“平衡”
+
+为追求“平衡”，尽量使得方案的每种情况下，最坏尝试次数相同   
+
+当在 m 层测试时，若鸡蛋碎掉，最坏尝试次数为 m ，
+再选择在 n 层尝试，若鸡蛋碎掉，最坏尝试次数为 1+n-m
+则：  m = 1+n-m   =>   n-m = m-1
+
+推导得出，每次增加的步长依次减 1 
+
+m + (m-1) + (m-2) + ... + 1 >= 100
+                   (m+1)m/2 >= 100
+                          m >= 14
+
+最终得出：
+       测试方案从 14 层开始，若鸡蛋没碎，
+       之后依次选择 27，39，50，60，69，77，84，90，95，99
+      
+```
+
+<br>
+
+##### (2)  若 K 、N 未知，给出通用解
+
+```
+(a) ‘平衡’分析
+
+反向考虑问题，当拥有 K 个鸡蛋时，尝试次数为 x ，则可以测量的层数为 f_K(x)
+得出：
+
+when K = 1 ,
+      f_K(x) = x
+when K >= 2 ,
+      f_K(x) = x + f_K-1(x-1) + f_K-1(x-2) + ... + f_K-1(0)
+when K >= x , 
+      f_K(x) = x + f_K-1(x-1) + ... + f_K-1(0)
+             = 2^x - 1  (binary search)
+
+证明：
+（前两个条件由推导得出，现证明第三个等式）
+ f_K(x) 可以展开使得 K => K-1 
+ 当 K 足够大时 (K >= x)，可忽略 K，即：
+        f(x) = x + f(x-1) + f(x-2) + ... + f(1)
+             = x + (x-1) + 2[f(x-2) + ... + f(1)]
+             = 2x + 2[f(x-2) + ... + f(1)] - 1
+             = 2[x + f(x-2) + ... + f(1)] - 1
+             = 2[2(x-1) + 2[f(x-3) + ... + f(1)]] - 1
+             = 2^2[(x-1) + [f(x-3) + ... + f(1)]] - 1
+             = 2^(x-2) [(x - (x-3)) + f(x - (x-3+2))] - 1
+             = 2^(x-2)[3 + f(1)] - 1
+             = 2^(x-2) * 2^2 - 1
+             = 2^x - 1
+             
+  可发现，当鸡蛋足够多时，策略转化为“二分搜索”
+
+```
+
+```python
+# coding
+
+dict_tmp = {}
+def func_compute(k, x):
+  # f_K(x) = x , K=1 ;  
+  # f_K(x) = x + f_K-1(x-1) + f_K-1(x-2) + ... + f_K-1(0) , K>=2
+  # when K >= x , f_K(x) = x + f_K-1(x-1) + ... + f_K-1(0) = 2^x - 1  (binary search)
+  
+  if k == 1:  
+      return x      
+  else:    
+      key = str(k)+'_'+str(x)
+      if key in dict_tmp.keys():
+          return dict_tmp[key]
+      sum = x
+      tmp = x-1
+      while(tmp >= 0):
+          sum += func_compute(k-1, tmp)
+          tmp -= 1
+      dict_tmp[key] = sum
+      return sum 
+    
+def superEggDrop(K, N):     
+    if N == 1:
+        return 1
+    if K == 1:
+        return N
+
+    left = 1
+    right = N
+    while(left < right):
+        if right - left > 100:
+            x_tmp = int(left + (right - left) / 20)
+        else:
+            x_tmp = int(left + (right - left) / 2)
+        result_tmp = func_compute(K, x_tmp)
+        if result_tmp > N:
+            if right - left == 1:
+                return left
+            right = x_tmp
+        elif result_tmp < N:
+            if right-left == 1:
+                return right
+            left = x_tmp
+        else:
+            return x_tmp
+    return x_tmp
 ```
 
 <br>

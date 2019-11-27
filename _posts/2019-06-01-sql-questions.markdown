@@ -24,12 +24,12 @@ id   user_id  time   url
 
 <br>
 
-##### 1. 查询昨天 “访问量” / “访问人数” 最大的页面
+##### 1. 查询昨天{ “访问量” | “访问人数” }最大的页面
 
 ```sql
 (a) sql '排序'
 
-SELECT url, COUNT(*)/COUNT(DISTINCT user_id) AS cnt
+SELECT url, {COUNT(*)|COUNT(DISTINCT user_id)} AS cnt
 FROM log
 GROUP BY url
 WHERE time = 'xxx'
@@ -40,7 +40,7 @@ LIMIT 1;
 (b) sql '不排序'
 
 WITH t1 AS (
-  SELECT url, COUNT(*)/COUNT(DISTINCT user_id) AS cnt
+  SELECT url, {COUNT(*)|COUNT(DISTINCT user_id)} AS cnt
   FROM log
   GROUP BY url
   WHERE time = 'xxx')
@@ -50,7 +50,7 @@ SELECT * FROM t1 WHERE cnt IN (SELECT MAX(cnt) FROM t1);
 (c) python pandas
 
 df[df.time == 'xxx'].groupby('url').apply(lambda x: pd.Series({
-    'cnt' : len(x)/len(x.user_id.unique()),
+    'cnt' : {len(x)|len(x.user_id.unique())},
 })).sort_values('cnt', ascending=False).iloc[0]
 
 ```

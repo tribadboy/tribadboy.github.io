@@ -1,0 +1,98 @@
+---
+layout: post
+title: Community Detection (LPA & HANP)
+categories: [development]
+tags: [algo]
+---
+
+<br>社区发现算法用来发现网络中的社区结构，也可以看做是一种“图的聚类算法”
+
+<br>
+
+* 非重叠社区：disjoint communities
+* 重叠社区：overlapping communities
+
+常见的“社区发现”算法：
+
+* 非重叠社区： LPA （LPAm、LPAm+）、HANP
+* 重叠社区： SLPA 、BMLPA
+
+<br>
+
+### LPA
+
+Label Propagation Algorithm (标签传播算法）
+
+```算法思想：
+1.为所有节点指定一个唯一标签
+2.逐轮刷新所有节点的标签，直到达到收敛要求为止
+```
+<br>
+
+### HANP
+
+Hop Attenuation (跳跃衰减) + Node Preference（节点倾向性选择）
+
+```算法思想：
+为各标签引入 score 刻画其传播能力，传播能力可能受传播距离和迭代次数等因素影响
+结点从邻居接收标签时，综合考虑标签的 score、邻居的度、边的权等因素
+```
+
+<img class="custom_image" src="/assets/images/article/algo/IMG_001.png"
+width="300" height="200" align="center">
+
+<br>
+
+### 模块度 Modularity
+
+模块度（Modularity）用来衡量一个社区的划分是不是相对比较好的结果.
+一个相对好的结果在社区内部的节点相似度较高，而在社区外部节点的相似度较低。
+
+
+
+> 模块度常用Q表示，定义如下：
+>
+> 社区内部的总边数和网络中总边数的比例减去一个期望值，该期望值是<u>将网络设定为随机网络时同样的社区分配所形成的社区内部的总边数和网络中总边数的比例的大小</u>，在进行每次划分的时候计算Q值，Q取值最大的时候则是此网路较理想的划分。
+>
+> Q值越大说明网络划分的社区结构准确度越高，在实际的网络分析中，Q值的范围在[-0.5,1），在0.3~0.7之间表明划分效果较好。
+
+
+
+<img class="custom_image" src="/assets/images/article/algo/IMG_002.png"
+width="600" height="500" align="center">
+
+```
+公式（1）等价于公式（2），证明过程：
+
+由 δ(lu, lv) 表明，公式（1）仅需考虑同一社区，跨社区的求和项均为 0，故将其转成对社区的遍历；
+
+对于任意的同一社区的点 u、v：
+
+1/2m * (Auv  -  kukv / 2m)
+
+= Auv / 2m -  kukv / (2m)^2
+
+= (2*It ) / (2m) -  kukv / (2m)^2
+
+= It / m -  kukv / (2m)^2
+
+= It / m -  (k1k1+k1k2+...+k1kn+k2k1+...+k2kn+...+knk1+...+knkn) / (2m)^2
+
+= It / m - (k1+k2+...+kn)^2 / (2m)^2
+
+=  It / m - Dt^2/(2m)^2
+
+= It / m - (Dt / 2m)^2
+
+
+* 在计算中，可根据需要选择公式（1）或者公式（2）；
+（在社区已经划分完成后，公式（2）的时间复杂度往往会更低一些）
+```
+
+
+
+
+<br>
+<br>
+
+

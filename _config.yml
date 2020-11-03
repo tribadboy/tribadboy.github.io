@@ -5,13 +5,13 @@ markdown: kramdown
 #highlighter: pygments
 highlighter: rouge
 logo: false
-domain_name: 'http://yangyueyang.com'
+domain_name: 'http://jarvisyang.com'
 # google_analytics: 'UA-XXXXXXXX-X'
 
 plugins: [jekyll-paginate]
 paginate: 6
 # Details for the RSS feed generator
-url:            'www.yangyueyang.com'
+url:            'www.jarvisyang.com'
 author:         'Jarvis Yang'
 
 parse_block_html: true

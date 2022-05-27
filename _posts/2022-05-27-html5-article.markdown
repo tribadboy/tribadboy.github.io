@@ -19,5 +19,5 @@ Html5网页制作和学习，参考网络资源，canvas动画效果的实现。
 
 <a href="/assets/html/html5-animation.html">样例地址1</a>
 
-<a href="/assets/html/html5-animation2.html">样例地址2 （生日卡片）</a>
+<a href="/assets/html/html5-animation2.html">样例地址2</a>
 

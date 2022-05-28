@@ -332,7 +332,7 @@ var S = {
     if (i !== -1) {
       S.UI.simulate(decodeURI(action).substring(i + 3));
     } else {
-      S.UI.simulate('|Mount Fuji||Cherry Blossom||#countdown 3|#jump|');
+      S.UI.simulate('|Mount Fuji|Cherry Blossom|Fireworks||#countdown 3|#jump|');
     }
     S.Drawing.loop(function () {
       S.Shape.render();
